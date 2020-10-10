@@ -12,7 +12,7 @@ import androidx.core.app.ActivityCompat
 import com.airbnb.lottie.LottieAnimationView
 import com.sushil.mausam.R
 import com.sushil.mausam.utils.pushToNext
-import com.sushil.myweatherapp.utils.PERMISSION_LOCATION
+import com.sushil.mausam.utils.PERMISSION_LOCATION
 
 
 class SplashScreenActivity : AppCompatActivity() {
@@ -38,7 +38,7 @@ class SplashScreenActivity : AppCompatActivity() {
                 requestPermissions()
             }
 
-        }, 5000)
+        }, 3000)
     }
 
     private fun checkPermissions(): Boolean {

@@ -1,4 +1,4 @@
-package com.sushil.myweatherapp.utils
+package com.sushil.mausam.utils
 
 import android.content.BroadcastReceiver
 import android.content.Context
