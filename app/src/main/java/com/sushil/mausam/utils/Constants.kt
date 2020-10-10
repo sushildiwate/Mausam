@@ -10,3 +10,7 @@ const val LATITUDE = "lat"
 const val LONGITUDE = "lon"
 const val APP_ID = "appid"
 const val UNITS = "units"
+
+var HOME = 0
+var SETTINGS = 1
+var HELP = 2

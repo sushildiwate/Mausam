@@ -6,4 +6,7 @@
     <color name="white">#FFFFFF</color>
     <color name="monza">#B00020</color>
     <color name="black">#000000</color>
+    <color name="azure">#356EB0</color>
+    <color name="gunmetal">#545859</color>
+    <color name="charcoalThree">#161919</color>
 </resources>

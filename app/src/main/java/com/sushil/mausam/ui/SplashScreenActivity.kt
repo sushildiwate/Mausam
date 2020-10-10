@@ -31,7 +31,7 @@ class SplashScreenActivity : AppCompatActivity() {
         Handler().postDelayed({
             animationView.cancelAnimation()
             if (checkPermissions()) {
-                val intent = Intent(this, MainActivity::class.java)
+                val intent = Intent(this, BaseActivity::class.java)
                 pushToNext(this, intent)
                 finish()
             } else {
@@ -72,8 +72,7 @@ class SplashScreenActivity : AppCompatActivity() {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
 
         if (requestCode == PERMISSION_LOCATION) {
-
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, BaseActivity::class.java)
             pushToNext(this, intent)
             finish()
 
