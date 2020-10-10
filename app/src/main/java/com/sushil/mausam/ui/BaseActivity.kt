@@ -10,6 +10,7 @@ import com.sushil.mausam.ApplicationActivity
 import com.sushil.mausam.R
 import com.sushil.mausam.customviews.BottomMenuView
 import com.sushil.mausam.database.MausamDataBase
+import com.sushil.mausam.ui.help.HelpFragment
 import com.sushil.mausam.utils.HELP
 import com.sushil.mausam.utils.HOME
 import com.sushil.mausam.utils.SETTINGS
@@ -61,7 +62,7 @@ class BaseActivity : ApplicationActivity(), BottomMenuView.BottomMenuViewListene
             }
             HELP -> {
                 setTitleFragment(R.string.help)
-                //fragment = MyBidTabFragment()
+                fragment = HelpFragment()
             }
         }
 

@@ -16,7 +16,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#FFFFFF"
+            android:background="@color/white"
             app:layout_scrollFlags="scroll|enterAlways">
 
             <include
@@ -26,6 +26,7 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
+                android:elevation="0dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/include_layout_snackbar">
 
