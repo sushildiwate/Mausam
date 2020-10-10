@@ -11,6 +11,8 @@ import com.sushil.mausam.R
 import com.sushil.mausam.customviews.BottomMenuView
 import com.sushil.mausam.database.MausamDataBase
 import com.sushil.mausam.ui.help.HelpFragment
+import com.sushil.mausam.ui.home.HomeFragment
+import com.sushil.mausam.ui.settings.SettingsFragment
 import com.sushil.mausam.utils.HELP
 import com.sushil.mausam.utils.HOME
 import com.sushil.mausam.utils.SETTINGS
@@ -54,11 +56,11 @@ class BaseActivity : ApplicationActivity(), BottomMenuView.BottomMenuViewListene
         when (menuId) {
             HOME -> {
                 setTitleFragment(R.string.home)
-                //fragment = FindFreightTabFragment()
+                fragment = HomeFragment()
             }
             SETTINGS -> {
                 setTitleFragment(R.string.settings)
-                //fragment = MyFreightTabFragment()
+                fragment = SettingsFragment()
             }
             HELP -> {
                 setTitleFragment(R.string.help)
