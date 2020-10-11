@@ -58,7 +58,7 @@
                     android:textColor="@color/charcoalThree"
                     android:textSize="@dimen/text_Xlarge"
                     android:textStyle="bold" />
-
+                
                 <TextView
                     android:id="@+id/text_view_bookmark"
                     android:layout_width="wrap_content"

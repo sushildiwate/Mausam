@@ -30,7 +30,7 @@ class WeatherActivity : AppCompatActivity(), ForecastAdapter.ForecastClickListen
         subscribeObserver()
         adapter = ForecastAdapter(forecastList, this)
         adapter.setOnItemClickListener(this)
-        image_view_back_arrow.setOnClickListener { finish() }
+        image_view_back_arrow.setOnClickListener { pushToBack(this) }
         imageViewRefresh.setOnClickListener { getWeatherData() }
     }
 
