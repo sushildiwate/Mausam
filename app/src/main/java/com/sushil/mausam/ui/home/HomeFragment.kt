@@ -1,7 +1,6 @@
 package com.sushil.mausam.ui.home
 
 import android.app.AlertDialog
-import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -15,13 +14,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.sushil.mausam.R
 import com.sushil.mausam.customviews.SwipeToDeleteCallback
 import com.sushil.mausam.model.CityModel
+import com.sushil.mausam.ui.weather.WeatherActivity
 import com.sushil.mausam.ui.home.adapter.CityAdapter
 import com.sushil.mausam.ui.map.MapsActivity
 import com.sushil.mausam.utils.Coroutines
 import com.sushil.mausam.utils.pushToNext
 import kotlinx.android.synthetic.main.fragment_home.*
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), CityAdapter.CityClickListener {
 
     private lateinit var homeViewModel: HomeViewModel
     private lateinit var homeRepository: HomeRepository
@@ -42,6 +42,7 @@ class HomeFragment : Fragment() {
         homeRepository = HomeRepository()
         homeViewModel = HomeViewModel(homeRepository)
         adapter = CityAdapter(savedCityList)
+        adapter.setOnItemClickListener(this)
         homeViewModel.getAllSavedCity()?.observe(viewLifecycleOwner, Observer {
             if (savedCityList.size > 0)
                 savedCityList.clear()
@@ -100,5 +101,12 @@ class HomeFragment : Fragment() {
             }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    override fun onItemClick(city: CityModel) {
+        val intent = Intent(activity, WeatherActivity::class.java)
+        intent.putExtra(getString(R.string.latitude), city.latitude)
+        intent.putExtra(getString(R.string.longitude), city.longitude)
+        activity?.let { pushToNext(it, intent) }
     }
 }

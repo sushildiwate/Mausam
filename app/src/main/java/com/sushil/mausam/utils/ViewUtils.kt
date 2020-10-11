@@ -8,8 +8,14 @@ import android.net.NetworkCapabilities
 import android.os.Build
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.bumptech.glide.request.RequestOptions
 import com.sushil.mausam.R
 
 
@@ -54,6 +60,21 @@ fun isInternetAvailable(activity: Activity): Boolean {
         }
     }
     return result
-}
 
+
+}
+fun ImageView.glideWith(path: String, context: Context) {
+    try {
+        val requestOptions =
+            RequestOptions().placeholder(R.drawable.sun)
+                .error(R.drawable.sun).transform(CenterCrop(),
+                    RoundedCorners(16)
+                )
+        Glide.with(context).setDefaultRequestOptions(requestOptions).load(path.replace(" ", "")).transform(CenterCrop(),RoundedCorners(16))
+            .into(this)
+    } catch (e: GlideException) {
+
+    }
+
+}
 

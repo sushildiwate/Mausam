@@ -9,37 +9,36 @@ import com.sushil.mausam.model.CityModel
 import kotlinx.android.synthetic.main.list_item_city.view.*
 
 
-class CityAdapter(private val savedCityList: MutableList<CityModel>) : RecyclerView.Adapter<CityAdapter.InvolveUserClaimViewHolder>() {
-
-    interface onItemClickListener {
+class CityAdapter(private val savedCityList: MutableList<CityModel>) : RecyclerView.Adapter<CityAdapter.ViewHolder>() {
+    private lateinit var listener: CityClickListener
+    interface CityClickListener {
         fun onItemClick(
             city: CityModel
         )
-        fun onItemDeleteClick(
-            city: String
-        )
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = InvolveUserClaimViewHolder(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder(
         LayoutInflater.from(parent.context).inflate(R.layout.list_item_city, parent, false)
     )
     override fun getItemCount() = savedCityList.size
-
-    override fun onBindViewHolder(holder: InvolveUserClaimViewHolder, position: Int) {
+    fun setOnItemClickListener(listener: CityClickListener) {
+        this.listener = listener
+    }
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(savedCityList[position])
     }
 
-    inner class InvolveUserClaimViewHolder(mView: View) : RecyclerView.ViewHolder(mView) {
+    inner class ViewHolder(mView: View) : RecyclerView.ViewHolder(mView) {
 
 
         fun bind(cityModel: CityModel) {
             itemView.city.text = cityModel.city
             itemView.address.text = cityModel.address
 
+            itemView.setOnClickListener {
+                listener.onItemClick(cityModel)
+            }
 
-            /*itemView.img_delete.setOnClickListener {
-                itemClickListener.onItemDeleteClick(City.city)
-            }*/
 
 
         }

@@ -1,4 +1,4 @@
-package com.sushil.mausam.ui
+package com.sushil.mausam.ui.splash
 
 import android.Manifest
 import android.content.Intent
@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import com.airbnb.lottie.LottieAnimationView
 import com.sushil.mausam.R
+import com.sushil.mausam.ui.BaseActivity
 import com.sushil.mausam.utils.pushToNext
 import com.sushil.mausam.utils.PERMISSION_LOCATION
 

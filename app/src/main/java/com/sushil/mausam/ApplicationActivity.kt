@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.sushil.mausam.utils.isInternetAvailable
 import com.sushil.mausam.utils.ConnectivityReceiver
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_weather.*
 
 
 open class ApplicationActivity : AppCompatActivity(),

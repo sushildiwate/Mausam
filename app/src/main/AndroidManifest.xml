@@ -41,7 +41,7 @@
             android:name=".ui.map.MapsActivity"
             android:label="@string/title_activity_maps"></activity>
         <activity
-            android:name=".ui.SplashScreenActivity"
+            android:name=".ui.splash.SplashScreenActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -49,7 +49,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.MainActivity" />
+        <activity android:name=".ui.weather.WeatherActivity" />
         <activity android:name=".ui.BaseActivity" />
     </application>
 

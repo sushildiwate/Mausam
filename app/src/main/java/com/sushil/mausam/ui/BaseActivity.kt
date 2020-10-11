@@ -12,7 +12,7 @@ import com.sushil.mausam.customviews.BottomMenuView
 import com.sushil.mausam.database.MausamDataBase
 import com.sushil.mausam.ui.help.HelpFragment
 import com.sushil.mausam.ui.home.HomeFragment
-import com.sushil.mausam.ui.settings.SettingsFragment
+import com.sushil.mausam.ui.settings.SettingFragment
 import com.sushil.mausam.utils.HELP
 import com.sushil.mausam.utils.HOME
 import com.sushil.mausam.utils.SETTINGS
@@ -60,7 +60,7 @@ class BaseActivity : ApplicationActivity(), BottomMenuView.BottomMenuViewListene
             }
             SETTINGS -> {
                 setTitleFragment(R.string.settings)
-                fragment = SettingsFragment()
+                fragment = SettingFragment()
             }
             HELP -> {
                 setTitleFragment(R.string.help)

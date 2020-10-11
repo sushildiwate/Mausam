@@ -62,7 +62,9 @@ data class WeatherModel(
         fun getForecastWeather(): Weather {
             return weather.first()
         }
-
+        fun getForecastWeatherList(): List<Weather> {
+            return weather
+        }
         fun getHumidity(): String {
             return humidity.toString().plus("%")
         }
