@@ -2,7 +2,7 @@ package com.sushil.mausam.utils
 
 const val PERMISSION_LOCATION = 22
 const val API_TIMEOUT = 30L
-const val DATABASE_NAME = "mausam_database"
+const val DATABASE_NAME = "mausam_database.db"
 const val BASE_URL = "http://api.openweathermap.org/data/2.5/"
 const val WEATHER_FORECAST = BASE_URL.plus("forecast/daily?cnt=6")
 

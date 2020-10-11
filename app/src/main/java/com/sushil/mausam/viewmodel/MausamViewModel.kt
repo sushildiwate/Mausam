@@ -11,25 +11,25 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 
 open class MausamViewModel(private val mausamRepository: MausamRepository) : ViewModel() {
-    val responseLiveData = MutableLiveData<WeatherModel>()
+    val responseMutableLiveData = MutableLiveData<WeatherModel>()
     val progressBar = MutableLiveData<Int>()
     val errorMessage: MutableLiveData<String> = MutableLiveData()
 
     private lateinit var subscription: Disposable
 
-    fun getWeather(lat: Double, lon: Double, api_key: String,unit:String, context: Context) {
+    fun getWeather(lat: Double, lon: Double, api_key: String,unit:String) {
 
         subscription =
             mausamRepository.getWeatherFromAPI(lat, lon, api_key,unit).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnSubscribe { progressBar.value = 0 }
-                .doOnTerminate { progressBar.value = 1 }
+                .doOnSubscribe { progressBar.postValue(0) }
+                .doOnTerminate { progressBar.postValue(1) }
                 .subscribe(
                     { result ->
-                        responseLiveData.value = result
+                        responseMutableLiveData.postValue(result)
                     },
                     { error ->
-                        Toast.makeText(context, error.message, Toast.LENGTH_SHORT).show()
+                        errorMessage.postValue(error.message)
                     }
                 )
 

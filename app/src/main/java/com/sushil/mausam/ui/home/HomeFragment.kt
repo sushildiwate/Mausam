@@ -4,25 +4,30 @@ import android.app.AlertDialog
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.annotation.NonNull
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.sushil.mausam.R
 import com.sushil.mausam.customviews.SwipeToDeleteCallback
-import com.sushil.mausam.database.City
+import com.sushil.mausam.model.CityModel
 import com.sushil.mausam.ui.home.adapter.CityAdapter
 import com.sushil.mausam.ui.map.MapsActivity
+import com.sushil.mausam.utils.Coroutines
 import com.sushil.mausam.utils.pushToNext
 import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : Fragment() {
 
     private lateinit var homeViewModel: HomeViewModel
+    private lateinit var homeRepository: HomeRepository
     var mFilterMenuItem: MenuItem? = null
-    private var adapter: CityAdapter? = null
-    private var savedCityList: MutableList<City?> = mutableListOf()
+    private lateinit var adapter: CityAdapter
+    private var savedCityList: MutableList<CityModel> = mutableListOf()
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -34,6 +39,23 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        homeRepository = HomeRepository()
+        homeViewModel = HomeViewModel(homeRepository)
+        adapter = CityAdapter(savedCityList)
+        homeViewModel.getAllSavedCity()?.observe(viewLifecycleOwner, Observer {
+            if (savedCityList.size > 0)
+                savedCityList.clear()
+            for (item in it) {
+                savedCityList.add(CityModel(item.city, item.address, item.latitude, item.longitude))
+                Log.d("Saved City", "${item.city} ${item.id}")
+            }
+            adapter.notifyDataSetChanged()
+        })
+
+        recyclerViewCity.adapter = adapter
+        recyclerViewCity.layoutManager = LinearLayoutManager(this.requireContext())
+
+
         val swipeToDeleteCallback: SwipeToDeleteCallback =
             object : SwipeToDeleteCallback(requireActivity()) {
                 override fun onSwiped(
@@ -43,16 +65,15 @@ class HomeFragment : Fragment() {
                     val position = viewHolder.adapterPosition
                     val dialogBuilder = AlertDialog.Builder(context)
 
-                    dialogBuilder.setMessage("Are you sure you want to delete \"${(savedCityList[position]?.city)}\" ?")
+                    dialogBuilder.setMessage("Are you sure you want to delete \"${(savedCityList[position].city)}\" ?")
                         .setCancelable(false)
-                        .setPositiveButton("Yes", DialogInterface.OnClickListener { _, _ ->
-                            // deleteSavedSearch(savedCityList[position])
-                        })
-                        .setNegativeButton("Cancel", DialogInterface.OnClickListener { dialog, _ ->
-                            adapter?.notifyDataSetChanged()
+                        .setPositiveButton("Yes") { _, _ ->
+                            Coroutines.io { homeViewModel.deleteCityFromDataBase(savedCityList[position].city) }
+                        }
+                        .setNegativeButton("Cancel") { dialog, _ ->
+                            adapter.notifyDataSetChanged()
                             dialog.cancel()
-
-                        })
+                        }
 
                     val alert = dialogBuilder.create()
                     alert.setTitle("Delete Saved Search")
@@ -64,25 +85,12 @@ class HomeFragment : Fragment() {
         itemTouchhelper.attachToRecyclerView(recyclerViewCity)
     }
 
-    /*private fun setAdapter() {
-           adapter = UserLocationListAdapter(object : UserLocationListAdapter.onItemClickListener{
-               override fun onItemClick(city: City) {
-
-
-               override fun onItemDeleteClick(city: String) {
-                   cityViewModel.deleteUserCity(city)
-               }
-
-           })
-           recyclerViewCity.adapter = adapter
-
-           getAllCity()
-       }*/
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu_home, menu)
         mFilterMenuItem = menu.findItem(R.id.addCity)
         super.onCreateOptionsMenu(menu, inflater)
     }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.addCity -> {
