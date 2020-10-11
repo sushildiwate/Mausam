@@ -12,23 +12,23 @@ import androidx.core.app.ActivityCompat
 import com.airbnb.lottie.LottieAnimationView
 import com.sushil.mausam.R
 import com.sushil.mausam.ui.BaseActivity
-import com.sushil.mausam.utils.pushToNext
 import com.sushil.mausam.utils.PERMISSION_LOCATION
+import com.sushil.mausam.utils.pushToNext
 
 
 class SplashScreenActivity : AppCompatActivity() {
     private lateinit var animationView: LottieAnimationView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        requestWindowFeature(Window.FEATURE_NO_TITLE)
         window.setFlags(
             WindowManager.LayoutParams.FLAG_FULLSCREEN,
             WindowManager.LayoutParams.FLAG_FULLSCREEN
-        );
+        )
         setContentView(R.layout.activity_splash_screen)
         animationView = findViewById(R.id.animation_view)
 
-        animationView.playAnimation();
+        animationView.playAnimation()
         Handler().postDelayed({
             animationView.cancelAnimation()
             if (checkPermissions()) {

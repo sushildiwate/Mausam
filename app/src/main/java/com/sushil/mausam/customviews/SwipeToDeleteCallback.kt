@@ -49,7 +49,7 @@ abstract class SwipeToDeleteCallback internal constructor(context: Context) :
     ) {
         super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
         val itemView: View = viewHolder.itemView
-        val itemHeight: Int = itemView.getHeight()
+        val itemHeight: Int = itemView.height
         val isCancelled = dX == 0f && !isCurrentlyActive
         if (isCancelled) {
             clearCanvas(
@@ -64,16 +64,16 @@ abstract class SwipeToDeleteCallback internal constructor(context: Context) :
         }
         mBackground.color = backgroundColor
         mBackground.setBounds(
-            itemView.getRight() + dX.toInt(),
-            itemView.getTop(),
-            itemView.getRight(),
-            itemView.getBottom()
+            itemView.right + dX.toInt(),
+            itemView.top,
+            itemView.right,
+            itemView.bottom
         )
         mBackground.draw(c)
-        val deleteIconTop: Int = itemView.getTop() + (itemHeight - intrinsicHeight) / 2
+        val deleteIconTop: Int = itemView.top + (itemHeight - intrinsicHeight) / 2
         val deleteIconMargin = (itemHeight - intrinsicHeight) / 2
-        val deleteIconLeft: Int = itemView.getRight() - deleteIconMargin - intrinsicWidth
-        val deleteIconRight: Int = itemView.getRight() - deleteIconMargin
+        val deleteIconLeft: Int = itemView.right - deleteIconMargin - intrinsicWidth
+        val deleteIconRight: Int = itemView.right - deleteIconMargin
         val deleteIconBottom = deleteIconTop + intrinsicHeight
         deleteDrawable!!.setBounds(deleteIconLeft, deleteIconTop, deleteIconRight, deleteIconBottom)
         deleteDrawable.draw(c)
@@ -99,7 +99,7 @@ abstract class SwipeToDeleteCallback internal constructor(context: Context) :
         mBackground = ColorDrawable()
         backgroundColor = Color.parseColor("#d11d1d")
         mClearPaint = Paint()
-        mClearPaint.setXfermode(PorterDuffXfermode(PorterDuff.Mode.CLEAR))
+        mClearPaint.xfermode = PorterDuffXfermode(PorterDuff.Mode.CLEAR)
 
         deleteDrawable = ContextCompat.getDrawable(mContext, R.drawable.ic_menu_delete)//mContext.resources.getDrawable(com.veritread.carrier.R.drawable.ic_swipe_delete)
         intrinsicWidth = deleteDrawable!!.intrinsicWidth

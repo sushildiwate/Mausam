@@ -15,15 +15,12 @@ import kotlinx.android.synthetic.main.activity_weather.*
 
 open class ApplicationActivity : AppCompatActivity(),
     ConnectivityReceiver.ConnectivityReceiverListener {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     private fun showMessage(isConnected: Boolean) {
         Log.e("ïsConnection", isConnected.toString())
         if (!isConnected) {
             include_layout_snackbar.visibility = View.VISIBLE
-            window.statusBarColor = ContextCompat.getColor(this, R.color.monza);
+            window.statusBarColor = ContextCompat.getColor(this, R.color.monza)
 
             include_layout_snackbar.setOnClickListener {
                 AlertDialog.Builder(this)
@@ -37,7 +34,7 @@ open class ApplicationActivity : AppCompatActivity(),
             }
         } else {
             include_layout_snackbar.visibility = View.GONE
-            window.statusBarColor = ContextCompat.getColor(this, R.color.colorPrimaryDark);
+            window.statusBarColor = ContextCompat.getColor(this, R.color.colorPrimaryDark)
         }
 
 

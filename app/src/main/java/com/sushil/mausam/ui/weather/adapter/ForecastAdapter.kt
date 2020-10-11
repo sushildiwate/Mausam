@@ -21,7 +21,7 @@ class ForecastAdapter(
 
     interface ForecastClickListener {
         fun onItemClick(
-            forecast: WeatherModel.Forecast
+            adapterPosition: Int
         )
     }
 
@@ -36,24 +36,24 @@ class ForecastAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(foreCastList[position])
-
     }
 
     inner class ViewHolder(mView: View) : RecyclerView.ViewHolder(mView) {
-
-
         fun bind(forecastModel: WeatherModel.Forecast) {
-
+            if (forecastModel.isSelected){
+                itemView.textViewListTemperature.typeface = Typeface.DEFAULT_BOLD
+                itemView.textViewListClimate.typeface = Typeface.DEFAULT_BOLD
+            }else{
+                itemView.textViewListTemperature.typeface = Typeface.DEFAULT
+                itemView.textViewListClimate.typeface = Typeface.DEFAULT
+            }
             itemView.textViewListTemperature.text = "Temperature: ${forecastModel.getMinMaxTemp()}"
             itemView.textViewListClimate.text =
                 "Climate: ${forecastModel.getForecastWeather().getWeatherDescription()}"
             itemView.textViewDate.text = forecastModel.getDayName()
 
             itemView.setOnClickListener {
-                /*itemView.textViewListTemperature.typeface = Typeface.DEFAULT_BOLD
-                itemView.textViewListClimate.typeface = Typeface.DEFAULT_BOLD*/
-                listener.onItemClick(forecastModel)
-               //notifyDataSetChanged()
+                listener.onItemClick(adapterPosition)
             }
             var url =
                 "http://openweathermap.org/img/wn/${forecastModel.getForecastWeather().icon}@4x.png"

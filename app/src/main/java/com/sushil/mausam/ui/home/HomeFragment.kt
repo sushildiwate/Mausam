@@ -3,7 +3,6 @@ package com.sushil.mausam.ui.home
 import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import androidx.annotation.NonNull
 import androidx.fragment.app.Fragment
@@ -11,12 +10,13 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.sushil.mausam.MausamApplication
 import com.sushil.mausam.R
 import com.sushil.mausam.customviews.SwipeToDeleteCallback
 import com.sushil.mausam.model.CityModel
-import com.sushil.mausam.ui.weather.WeatherActivity
 import com.sushil.mausam.ui.home.adapter.CityAdapter
 import com.sushil.mausam.ui.map.MapsActivity
+import com.sushil.mausam.ui.weather.WeatherActivity
 import com.sushil.mausam.utils.Coroutines
 import com.sushil.mausam.utils.pushToNext
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -25,7 +25,7 @@ class HomeFragment : Fragment(), CityAdapter.CityClickListener {
 
     private lateinit var homeViewModel: HomeViewModel
     private lateinit var homeRepository: HomeRepository
-    var mFilterMenuItem: MenuItem? = null
+    private lateinit var mFilterMenuItem: MenuItem
     private lateinit var adapter: CityAdapter
     private var savedCityList: MutableList<CityModel> = mutableListOf()
     override fun onCreateView(
@@ -34,21 +34,22 @@ class HomeFragment : Fragment(), CityAdapter.CityClickListener {
         savedInstanceState: Bundle?
     ): View? {
         setHasOptionsMenu(true)
+        val cityDao = MausamApplication.instance?.getRoomDAO()?.cityDao()
+        homeRepository = HomeRepository(cityDao)
+        homeViewModel = HomeViewModel(homeRepository)
+        adapter = CityAdapter(savedCityList)
+        adapter.setOnItemClickListener(this)
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        homeRepository = HomeRepository()
-        homeViewModel = HomeViewModel(homeRepository)
-        adapter = CityAdapter(savedCityList)
-        adapter.setOnItemClickListener(this)
+
         homeViewModel.getAllSavedCity()?.observe(viewLifecycleOwner, Observer {
             if (savedCityList.size > 0)
                 savedCityList.clear()
             for (item in it) {
                 savedCityList.add(CityModel(item.city, item.address, item.latitude, item.longitude))
-                Log.d("Saved City", "${item.city} ${item.id}")
             }
             adapter.notifyDataSetChanged()
         })
@@ -82,8 +83,8 @@ class HomeFragment : Fragment(), CityAdapter.CityClickListener {
                     alert.show()
                 }
             }
-        val itemTouchhelper = ItemTouchHelper(swipeToDeleteCallback)
-        itemTouchhelper.attachToRecyclerView(recyclerViewCity)
+        val itemTouchHelper = ItemTouchHelper(swipeToDeleteCallback)
+        itemTouchHelper.attachToRecyclerView(recyclerViewCity)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

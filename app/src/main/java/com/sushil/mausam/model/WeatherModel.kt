@@ -1,8 +1,8 @@
 package com.sushil.mausam.model
 
 
-import com.google.gson.annotations.SerializedName
 import androidx.annotation.Keep
+import com.google.gson.annotations.SerializedName
 import com.sushil.mausam.utils.capitalizeWords
 import com.sushil.mausam.utils.getDayName
 
@@ -62,9 +62,13 @@ data class WeatherModel(
         fun getForecastWeather(): Weather {
             return weather.first()
         }
+
         fun getForecastWeatherList(): List<Weather> {
             return weather
         }
+
+        var isSelected: Boolean = false
+
         fun getHumidity(): String {
             return humidity.toString().plus("%")
         }
@@ -103,7 +107,7 @@ data class WeatherModel(
             }
 
             fun getWeatherIcon(): String {
-                return icon ?: ""
+                return icon
             }
         }
     }

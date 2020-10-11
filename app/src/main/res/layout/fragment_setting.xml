@@ -5,49 +5,207 @@
     android:layout_height="match_parent"
     tools:context=".ui.settings.SettingFragment">
 
-    <RelativeLayout
-        android:id="@+id/relativeLayout_main"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:elevation="3dp">
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/image_view_back_arrow"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:drawableLeft="@drawable/ic_baseline_arrow_back_24"
-            android:drawablePadding="8dp"
-            android:drawableTint="@color/black"
-            android:gravity="center_vertical"
-            android:paddingLeft="16dp"
-            android:paddingTop="16dp"
-            android:paddingRight="16dp"
-            android:paddingBottom="16dp"
-            android:text="Back"
-            android:textColor="@color/charcoalThree"
-            android:textSize="16sp" />
-
-
-        <TextView
-            android:id="@+id/text_view_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:gravity="center_horizontal|center_vertical"
-            android:text="Setting"
-            android:textColor="@color/charcoalThree"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/relativeLayout_main"
         android:orientation="vertical">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/fragment_setting_units"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:paddingStart="16dp"
+                    android:text="Units"
+                    android:textColor="@color/charcoalThree"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <RelativeLayout
+                    android:id="@+id/relativeLayoutUnit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/imageViewUnit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/layout_margin"
+                        android:padding="4dp"
+                        android:src="@drawable/ic_baseline_tune_24" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="24dp"
+                        android:layout_marginTop="14dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_marginBottom="14dp"
+                        android:layout_toLeftOf="@+id/textViewUnitType"
+                        android:layout_toRightOf="@+id/imageViewUnit"
+                        android:padding="4dp"
+                        android:text="Unit type"
+                        android:textColor="@color/charcoalThree"
+                        android:textSize="16sp" />
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/textViewUnitType"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginTop="14dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginBottom="14dp"
+                        android:padding="4dp"
+                        android:text="Unit"
+                        android:textColor="@color/charcoalThree"
+                        android:textSize="16sp" />
+
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/fragment_more_bookmarked_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:paddingStart="16dp"
+                    android:text="@string/bookmarked_list"
+                    android:textColor="@color/charcoalThree"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <RelativeLayout
+                    android:id="@+id/relativeLayoutClearBookmarkedList"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/imageViewClearList"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/layout_margin"
+                        android:padding="4dp"
+                        android:src="@drawable/ic_baseline_clear_all_24" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="14dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginBottom="14dp"
+                        android:layout_toEndOf="@+id/imageViewClearList"
+                        android:padding="4dp"
+                        android:text="@string/clear_all_list"
+                        android:textColor="@color/charcoalThree"
+                        android:textSize="16sp" />
+
+
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/fragment_more_support_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:paddingStart="16dp"
+                    android:text="Support"
+                    android:textColor="@color/charcoalThree"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <RelativeLayout
+                    android:id="@+id/relativeLayoutContactSupport"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/imageViewContactSupport"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/layout_margin"
+                        android:padding="4dp"
+                        android:src="@drawable/ic_baseline_contact_support_24" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="24dp"
+                        android:layout_marginTop="14dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_marginBottom="14dp"
+                        android:layout_toRightOf="@+id/imageViewContactSupport"
+                        android:padding="4dp"
+                        android:text="Contact support"
+                        android:textColor="@color/charcoalThree"
+                        android:textSize="16sp" />
+
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+
+        </androidx.cardview.widget.CardView>
 
 
     </LinearLayout>

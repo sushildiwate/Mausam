@@ -39,11 +39,6 @@ class CityAdapter(private val savedCityList: MutableList<CityModel>) : RecyclerV
                 listener.onItemClick(cityModel)
             }
 
-
-
         }
-
-
     }
-
 }

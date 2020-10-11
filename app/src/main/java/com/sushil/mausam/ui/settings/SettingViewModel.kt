@@ -1,13 +1,11 @@
 package com.sushil.mausam.ui.settings
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class SettingViewModel : ViewModel() {
+class SettingViewModel(private val settingRepository: SettingRepository) : ViewModel() {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is Setting Fragment"
+    suspend fun deleteAllCitiesFromDataBase(
+    ) {
+        settingRepository.deleteAllCitiesFromDataBase()
     }
-    val text: LiveData<String> = _text
 }
