@@ -53,27 +53,27 @@ class WeatherActivity : AppCompatActivity(), ForecastAdapter.ForecastClickListen
             textViewCity.text = weather.city.name
             textViewUnitType.text = "Unit type: ${preference.getUnitType()} "
             setWeatherData(weather.getForecast())
-            if (forecastList.isNotEmpty())
+            if (forecastList.isNotEmpty()) {
                 forecastList.clear()
-            else {
-                for (item in weather.list) {
-                    forecastList.add(
-                        WeatherModel.Forecast(
-                            item.clouds,
-                            item.deg,
-                            item.dt,
-                            item.feelsLike,
-                            item.humidity,
-                            item.pop,
-                            item.pressure,
-                            item.speed,
-                            item.sunrise,
-                            item.sunset,
-                            item.temp,
-                            item.weather
-                        )
+            }
+            for (item in weather.list) {
+                forecastList.add(
+                    WeatherModel.Forecast(
+                        item.clouds,
+                        item.deg,
+                        item.dt,
+                        item.feelsLike,
+                        item.humidity,
+                        item.pop,
+                        item.pressure,
+                        item.speed,
+                        item.sunrise,
+                        item.sunset,
+                        item.temp,
+                        item.weather
                     )
-                }
+                )
+
                 forecastList[0].isSelected = true
                 adapter.notifyDataSetChanged()
             }
