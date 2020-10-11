@@ -8,9 +8,9 @@
         android:title="Add city"
         android:icon="@drawable/ic_baseline_add_location_24"
         app:showAsAction="always" />
-    <!--<item
-        android:id="@+id/search"
-        android:icon="@drawable/ic_notification_bell"
+   <!-- <item
+        android:id="@+id/searchPlaces"
+        android:icon="@drawable/ic_baseline_search_24"
         android:orderInCategory="2"
         android:title="Search"
         app:showAsAction="always" />-->

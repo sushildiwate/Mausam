@@ -20,11 +20,11 @@
                 android:layout_width="wrap_content"
                 android:padding="@dimen/padding_8dp"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_baseline_location_city_24"
+                android:src="@drawable/ic_baseline_place_24"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:tint="@color/black" />
+                 />
             <TextView
                 android:id="@+id/city"
                 android:layout_width="0dp"
@@ -34,7 +34,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 android:textSize="@dimen/text_large"
                 android:textStyle="bold"
-                tools:text="Name"/>
+                tools:text=""/>
             <TextView
                 android:id="@+id/address"
                 android:layout_width="0dp"
@@ -44,7 +44,7 @@
                 android:layout_marginEnd="@dimen/layout_margin"
                 app:layout_constraintStart_toEndOf="@+id/img_loc"
                 app:layout_constraintTop_toBottomOf="@+id/city"
-                tools:text="Address"
+                tools:text=""
                 />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

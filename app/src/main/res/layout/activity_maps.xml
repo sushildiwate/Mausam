@@ -39,13 +39,13 @@
                     android:drawablePadding="8dp"
                     android:drawableTint="@color/black"
                     android:gravity="center_vertical"
-                    android:paddingLeft="16dp"
-                    android:paddingTop="16dp"
-                    android:paddingRight="16dp"
-                    android:paddingBottom="16dp"
-                    android:text="Back"
+                    android:paddingLeft="@dimen/padding_16dp"
+                    android:paddingTop="@dimen/padding_16dp"
+                    android:paddingRight="@dimen/padding_16dp"
+                    android:paddingBottom="@dimen/padding_16dp"
+                    android:text="@string/back"
                     android:textColor="@color/charcoalThree"
-                    android:textSize="16sp" />
+                    android:textSize="@dimen/text_large" />
 
 
                 <TextView
@@ -56,7 +56,7 @@
                     android:gravity="center_horizontal|center_vertical"
                     android:text="Select Place"
                     android:textColor="@color/charcoalThree"
-                    android:textSize="18sp"
+                    android:textSize="@dimen/text_Xlarge"
                     android:textStyle="bold" />
 
                 <TextView
@@ -67,7 +67,7 @@
                     android:gravity="center_horizontal|center_vertical"
                     android:text="Search"
                     android:visibility="gone"
-                    android:layout_marginEnd="8dp"
+                    android:layout_marginEnd="@dimen/layout_margin"
                     android:layout_alignParentEnd="true"
                     android:textColor="@color/charcoalThree"
                     android:textSize="16sp" />
@@ -78,12 +78,12 @@
                     android:layout_centerVertical="true"
                     android:gravity="center_horizontal|center_vertical"
                     android:text=""
-                    android:padding="8dp"
+                    android:padding="@dimen/padding_8dp"
                     android:drawableLeft="@drawable/ic_baseline_bookmark_border_24"
-                    android:layout_marginEnd="8dp"
+                    android:layout_marginEnd="@dimen/layout_margin"
                     android:layout_alignParentEnd="true"
                     android:textColor="@color/charcoalThree"
-                    android:textSize="16sp" />
+                    android:textSize="@dimen/text_large" />
 
             </RelativeLayout>
         </RelativeLayout>

@@ -17,10 +17,10 @@
     <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="@dimen/margin_100dp"
         android:layout_centerHorizontal="true"
         android:text="@string/mausam"
-        android:textSize="40sp"
+        android:textSize="@dimen/text_size_40sp"
         android:textStyle="bold"
         android:textColor="@color/white"
         />

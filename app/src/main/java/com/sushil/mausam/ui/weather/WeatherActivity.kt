@@ -26,18 +26,21 @@ class WeatherActivity : AppCompatActivity(), ForecastAdapter.ForecastClickListen
         setContentView(R.layout.activity_weather)
         preference = PreferenceProviderMausam(this)
         getDataFromIntent()
+        getWeatherData()
+        subscribeObserver()
+        adapter = ForecastAdapter(forecastList, this)
+        adapter.setOnItemClickListener(this)
+        image_view_back_arrow.setOnClickListener { finish() }
+        imageViewRefresh.setOnClickListener { getWeatherData() }
+    }
 
+    private fun getWeatherData() {
         mMausamViewModel.getWeather(
             mLatitude,
             mLongitude,
             WEATHER_API_KEY,
             preference.getUnitType().toLowerCase()
         )
-
-        subscribeObserver()
-        adapter = ForecastAdapter(forecastList, this)
-        adapter.setOnItemClickListener(this)
-        image_view_back_arrow.setOnClickListener { finish() }
     }
 
     private fun getDataFromIntent() {
@@ -48,7 +51,7 @@ class WeatherActivity : AppCompatActivity(), ForecastAdapter.ForecastClickListen
     private fun subscribeObserver() {
         mMausamViewModel.responseMutableLiveData.observe(this, Observer { weather ->
             textViewCity.text = weather.city.name
-            textViewUnitType.text = "Unit type: ${preference.getUnitType()}"
+            textViewUnitType.text = "Unit type: ${preference.getUnitType()} "
             setWeatherData(weather.getForecast())
             if (forecastList.isNotEmpty())
                 forecastList.clear()
@@ -93,7 +96,7 @@ class WeatherActivity : AppCompatActivity(), ForecastAdapter.ForecastClickListen
     }
 
     private fun setWeatherData(forecast: WeatherModel.Forecast) {
-        textViewTemperature.text = "Temperature: ${forecast.getMinMaxTemp()}"
+        textViewTemperature.text = "Temperature: ${forecast.getMinMaxTemp()} °"
         textViewClimate.text =
             "Climate: ${forecast.getForecastWeather().getWeatherDescription()}"
         textViewHumidity.text = "Humidity: ${forecast.getHumidity()}"

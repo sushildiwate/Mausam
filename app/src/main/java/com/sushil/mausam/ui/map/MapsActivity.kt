@@ -146,7 +146,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
                 val address =
                     addresses[0].getAddressLine(0) //0 to obtain first possible address
 
-                val city = addresses[0].subAdminArea
+                val city = if (addresses[0].locality != null) addresses[0].locality + ", " + addresses[0].subAdminArea else addresses[0].subAdminArea
                 val state = addresses[0].adminArea
 
                 addressText = "$address-$city-$state"

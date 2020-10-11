@@ -8,4 +8,8 @@ class SettingViewModel(private val settingRepository: SettingRepository) : ViewM
     ) {
         settingRepository.deleteAllCitiesFromDataBase()
     }
+    suspend fun getBookMarkCountFromDataBase(
+    ):Int? {
+     return settingRepository.getBookMarkCount()
+    }
 }

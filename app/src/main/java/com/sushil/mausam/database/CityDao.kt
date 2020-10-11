@@ -14,6 +14,9 @@ interface CityDao {
     @Query("DELETE FROM  table_city WHERE city  = :city ")
     fun deleteCity(city: String)
 
+    @Query("SELECT COUNT(*) FROM table_city")
+    fun getCount():Int
+
     @Query("SELECT * FROM table_city")
     fun getAllSavedCity(): LiveData<List<City>>
 

@@ -32,16 +32,16 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:drawableLeft="@drawable/ic_baseline_arrow_back_24"
-            android:drawablePadding="8dp"
+            android:drawablePadding="@dimen/padding_8dp"
             android:drawableTint="@color/black"
             android:gravity="center_vertical"
-            android:paddingLeft="16dp"
-            android:paddingTop="16dp"
-            android:paddingRight="16dp"
-            android:paddingBottom="16dp"
-            android:text="Back"
+            android:paddingLeft="@dimen/padding_16dp"
+            android:paddingTop="@dimen/padding_16dp"
+            android:paddingRight="@dimen/padding_16dp"
+            android:paddingBottom="@dimen/padding_16dp"
+            android:text="@string/back"
             android:textColor="@color/charcoalThree"
-            android:textSize="16sp" />
+            android:textSize="@dimen/text_large" />
 
 
         <TextView
@@ -50,9 +50,22 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:gravity="center_horizontal|center_vertical"
-            android:text="Mausam"
+            android:text="@string/app_name"
             android:textColor="@color/charcoalThree"
-            android:textSize="18sp"
+            android:textSize="@dimen/text_Xlarge"
+            android:textStyle="bold" />
+        <ImageView
+            android:id="@+id/imageViewRefresh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/padding_16dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:gravity="center_horizontal|center_vertical"
+            android:src="@drawable/ic_baseline_refresh_24"
+            android:text=""
+            android:textColor="@color/charcoalThree"
+            android:textSize="@dimen/text_Xlarge"
             android:textStyle="bold" />
 
     </RelativeLayout>
@@ -74,10 +87,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal|center_vertical"
-        android:padding="16dp"
-        android:text="City Name"
+        android:padding="@dimen/padding_16dp"
+        android:text=""
         android:textColor="@color/charcoalThree"
-        android:textSize="18sp"
+        android:textSize="@dimen/text_Xlarge"
         android:textStyle="bold" />
     <TextView
         android:id="@+id/textViewUnitType"
@@ -87,7 +100,7 @@
         android:layout_alignParentBottom="true"
         android:text=""
         android:textColor="@color/charcoalThree"
-        android:textSize="12sp" />
+        android:textSize="@dimen/text_small" />
 
 </RelativeLayout>
 
@@ -97,8 +110,8 @@
                 android:layout_height="wrap_content"
                 android:background="#192D3A"
                 android:orientation="horizontal"
-                android:paddingTop="16dp"
-                android:paddingBottom="16dp"
+                android:paddingTop="@dimen/padding_16dp"
+                android:paddingBottom="@dimen/padding_16dp"
                 android:weightSum="1">
 
                 <ImageView
@@ -107,7 +120,7 @@
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:layout_weight="0.4"
-                    android:padding="24dp" />
+                    android:padding="@dimen/paddimg_24dp" />
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -120,59 +133,59 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:includeFontPadding="false"
-                        android:padding="4dp"
+                        android:padding="@dimen/padding_4dp"
                         android:textColor="@color/white"
-                        android:textSize="18sp"
-                        tools:text="Temperature: 33\u00B0" />
+                        android:textSize="@dimen/text_Xlarge"
+                        tools:text="" />
 
                     <TextView
                         android:id="@+id/textViewClimate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:padding="4dp"
+                        android:padding="@dimen/padding_4dp"
                         android:textColor="@color/white"
-                        android:textSize="18sp"
-                        tools:text="Climate: Light snow" />
+                        android:textSize="@dimen/text_Xlarge"
+                        tools:text="" />
 
                     <TextView
                         android:id="@+id/textViewHumidity"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:includeFontPadding="false"
-                        android:padding="4dp"
+                        android:padding="@dimen/padding_4dp"
                         android:textColor="@color/white"
-                        android:textSize="18sp"
-                        tools:text="Humidity: 89%" />
+                        android:textSize="@dimen/text_Xlarge"
+                        tools:text="" />
 
                     <TextView
                         android:id="@+id/textViewWindSpeed"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:includeFontPadding="false"
-                        android:padding="4dp"
+                        android:padding="@dimen/padding_4dp"
                         android:textColor="@color/white"
-                        android:textSize="18sp"
-                        tools:text="Wind Speed: 9 mph" />
+                        android:textSize="@dimen/text_Xlarge"
+                        tools:text="" />
 
                     <TextView
                         android:id="@+id/textViewPressure"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:includeFontPadding="false"
-                        android:padding="4dp"
+                        android:padding="@dimen/padding_4dp"
                         android:textColor="@color/white"
-                        android:textSize="18sp"
-                        tools:text="Pressure: 0.2 mm" />
+                        android:textSize="@dimen/text_Xlarge"
+                        tools:text="" />
 
                     <TextView
                         android:id="@+id/textViewWindDegree"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:includeFontPadding="false"
-                        android:padding="4dp"
+                        android:padding="@dimen/padding_4dp"
                         android:textColor="@color/white"
-                        android:textSize="18sp"
-                        tools:text="Wind Degree: 158\u00B0" />
+                        android:textSize="@dimen/text_Xlarge"
+                        tools:text="" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -185,10 +198,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal|center_vertical"
-                android:padding="16dp"
-                android:text="Weather Forecast"
+                android:padding="@dimen/padding_16dp"
+                android:text="@string/weather_forecast"
                 android:textColor="@color/charcoalThree"
-                android:textSize="18sp" />
+                android:textSize="@dimen/text_Xlarge" />
             <View
                 android:layout_width="match_parent"
                 android:layout_height="2dp"

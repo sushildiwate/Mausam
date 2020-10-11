@@ -28,12 +28,14 @@ class HomeFragment : Fragment(), CityAdapter.CityClickListener {
     private lateinit var mFilterMenuItem: MenuItem
     private lateinit var adapter: CityAdapter
     private var savedCityList: MutableList<CityModel> = mutableListOf()
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         setHasOptionsMenu(true)
+
         val cityDao = MausamApplication.instance?.getRoomDAO()?.cityDao()
         homeRepository = HomeRepository(cityDao)
         homeViewModel = HomeViewModel(homeRepository)
@@ -52,6 +54,9 @@ class HomeFragment : Fragment(), CityAdapter.CityClickListener {
                 savedCityList.add(CityModel(item.city, item.address, item.latitude, item.longitude))
             }
             adapter.notifyDataSetChanged()
+            if (adapter.itemCount == 0)
+                imageViewNoData.visibility = View.VISIBLE
+            else imageViewNoData.visibility = View.GONE
         })
 
         recyclerViewCity.adapter = adapter
@@ -100,6 +105,7 @@ class HomeFragment : Fragment(), CityAdapter.CityClickListener {
                 activity?.let { pushToNext(it, intent) }
                 true
             }
+
             else -> super.onOptionsItemSelected(item)
         }
     }
@@ -110,4 +116,6 @@ class HomeFragment : Fragment(), CityAdapter.CityClickListener {
         intent.putExtra(getString(R.string.longitude), city.longitude)
         activity?.let { pushToNext(it, intent) }
     }
+
+
 }

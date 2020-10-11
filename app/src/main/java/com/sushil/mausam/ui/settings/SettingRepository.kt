@@ -12,5 +12,7 @@ class SettingRepository(private val cityDao: CityDao?) {
         cityDao?.nukeAll(
         )
     }
-
+    suspend fun getBookMarkCount():Int? {
+        return cityDao?.getCount()
+    }
 }

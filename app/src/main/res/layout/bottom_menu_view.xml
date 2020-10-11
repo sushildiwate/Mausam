@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/shadow"
-        android:background="#FBFBFB"
+        android:background="@color/white_fbfbfb"
         android:orientation="horizontal"
         android:weightSum="3">
 
@@ -31,7 +31,7 @@
             android:paddingBottom="5dp"
             android:text="@string/home"
             android:textColor="@color/gunmetal"
-            android:textSize="12sp"
+            android:textSize="@dimen/text_small"
             app:drawableTopCompat="@drawable/ic_home_unselected" />
 
         <TextView
@@ -45,7 +45,7 @@
             android:paddingBottom="5dp"
             android:text="@string/settings"
             android:textColor="@color/gunmetal"
-            android:textSize="12sp"
+            android:textSize="@dimen/text_small"
             app:drawableTopCompat="@drawable/ic_settings_unselected" />
 
         <TextView
@@ -59,7 +59,7 @@
             android:paddingBottom="5dp"
             android:text="@string/help"
             android:textColor="@color/gunmetal"
-            android:textSize="12sp"
+            android:textSize="@dimen/text_small"
             app:drawableTopCompat="@drawable/ic_help_unselected" />
 
     </LinearLayout>

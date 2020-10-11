@@ -18,7 +18,7 @@ var HELP = 2
 
 const val DEFAULT_LATITUDE=200.0
 const val DEFAULT_LONGITUDE=200.0
-
+const val UNIT_TYPE = "unit_type"
 const val UNIT_METRIC="metric"
 const val UNIT_IMPERIAL="imperial"
-const val UNIT_STANDARD=""
+const val UNIT_STANDARD="standard"

@@ -11,4 +11,8 @@
     <string name="setting">Settings</string>
     <string name="back">Back</string>
     <string name="bookmarked_list">Bookmarked List</string>
+    <string name="weather_forecast">Weather Forecast</string>
+    <string name="bookmarked_cities">Bookmarked cities</string>
+    <string name="unit_type">Unit type</string>
+    <string name="unit">Unit</string>
 </resources>

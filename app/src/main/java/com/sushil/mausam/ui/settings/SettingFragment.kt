@@ -1,7 +1,6 @@
 package com.sushil.mausam.ui.settings
 
 import android.app.AlertDialog
-import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -22,6 +21,7 @@ class SettingFragment : Fragment() {
     private lateinit var settingViewModel: SettingViewModel
     private lateinit var settingRepository: SettingRepository
     private lateinit var preference: PreferenceProviderMausam
+    var count = 0
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -32,7 +32,9 @@ class SettingFragment : Fragment() {
         val cityDao = MausamApplication.instance?.getRoomDAO()?.cityDao()
         settingRepository = SettingRepository(cityDao)
         settingViewModel = SettingViewModel(settingRepository)
-
+        Coroutines.io {
+            settingViewModel.getBookMarkCountFromDataBase()?.let { count = it }
+        }
         return inflater.inflate(R.layout.fragment_setting, container, false)
     }
 
@@ -41,27 +43,30 @@ class SettingFragment : Fragment() {
         setUnitType()
         textViewUnitType.text =
             if (preference.getUnitType().isEmpty()) UNIT_STANDARD else preference.getUnitType()
+        if (count == 0) {
+            activity?.toast("Nothing to delete")
+        } else {
+            relativeLayoutClearBookmarkedList.setOnClickListener {
 
-        relativeLayoutClearBookmarkedList.setOnClickListener {
-            val dialogBuilder = AlertDialog.Builder(context)
+                val dialogBuilder = AlertDialog.Builder(context)
 
-            dialogBuilder.setMessage("Are you sure you want to delete all bookmarked cities ?")
-                .setCancelable(true)
-                .setPositiveButton("Yes") { _, _ ->
-                    Coroutines.io {
-                        settingViewModel.deleteAllCitiesFromDataBase()
+                dialogBuilder.setMessage("Are you sure you want to delete all bookmarked cities ?")
+                    .setCancelable(true)
+                    .setPositiveButton("Yes") { _, _ ->
+                        Coroutines.io {
+                            settingViewModel.deleteAllCitiesFromDataBase()
+                        }
                     }
-                }
-                .setNegativeButton("Cancel") { dialog, _ ->
-                    dialog.cancel()
-                }
+                    .setNegativeButton("Cancel") { dialog, _ ->
+                        dialog.cancel()
+                    }
 
-            val alert = dialogBuilder.create()
-            alert.setTitle("Delete Saved Search")
+                val alert = dialogBuilder.create()
+                alert.setTitle("Delete Saved Search")
 
-            alert.show()
+                alert.show()
 
-
+            }
         }
 
         relativeLayoutUnit.setOnClickListener {
@@ -87,8 +92,9 @@ class SettingFragment : Fragment() {
         val buttonSubmit = view.findViewById<Button>(R.id.btnSubmit)
         val radioGroup = view.findViewById<RadioGroup>(R.id.radioGroup)
         when {
-            preference.getUnitType().equals( UNIT_IMPERIAL,true) -> radioGroup.check(R.id.rbImperial)
-            preference.getUnitType().equals( UNIT_METRIC,true) -> radioGroup.check(R.id.rbMetric)
+            preference.getUnitType()
+                .equals(UNIT_IMPERIAL, true) -> radioGroup.check(R.id.rbImperial)
+            preference.getUnitType().equals(UNIT_METRIC, true) -> radioGroup.check(R.id.rbMetric)
             else -> radioGroup.check(R.id.rbStandard)
         }
 

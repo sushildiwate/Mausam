@@ -3,9 +3,9 @@ package com.sushil.mausam.preference
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.preference.PreferenceManager
+import com.sushil.mausam.utils.UNIT_STANDARD
+import com.sushil.mausam.utils.UNIT_TYPE
 
-
-private const val UNIT_TYPE = "unit_type"
 
 class PreferenceProviderMausam(
     context: Context
@@ -16,7 +16,7 @@ class PreferenceProviderMausam(
 
 
     fun getUnitType(): String {
-        return preference.getString(UNIT_TYPE, "").toString()
+        return preference.getString(UNIT_TYPE, UNIT_STANDARD).toString()
     }
 
     fun updateUnitType(unitType: String) {
