@@ -1,5 +1,4 @@
 # Mausam
-Project for the assignment
 
 Name of the project : Mausam
 
